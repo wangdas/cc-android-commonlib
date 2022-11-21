@@ -25,12 +25,11 @@ android {
         //线上环境
         release {
             //混淆
-            minifyEnabled true
+            minifyEnabled false
             //混淆规则
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //Zipalign优化
             zipAlignEnabled true
-
         }
     }
 
@@ -38,31 +37,10 @@ android {
         abortOnError false
     }
 
-//    afterEvaluate {
-//        publishing {
-//            publications {
-//                release(MavenPublication) {
-//                    from components.release
-//
-//                    groupId = 'com.bokecc'
-//                    artifactId = 'commonLib'
-//                    version = '1.0.0'
-//                }
-//                debug(MavenPublication) {
-//                    from components.debug
-//
-//                    groupId = 'com.bokecc'
-//                    artifactId = 'commonLib'
-//                    version = '1.0.0'
-//                }
-//            }
-//        }
-//    }
-
 }
 
 dependencies {
-
+    implementation files('libs/commonLib-1.1.10.jar')
 }
 
 
@@ -80,21 +58,3 @@ def getProperty(String filename, String propName) {
         print(filename + " does not exist!")
     }
 }
-// 配置上传指令
-//uploadArchives {
-//    configuration = configurations.archives
-//    repositories {
-//        mavenDeployer {
-//            repository(url: MAVEN_URL) {
-//                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
-//            }
-//            pom.project {
-//                artifactId 'commonLib'
-//                groupId 'com.bokecc'
-//                packaging 'aar'
-//                version CommonLibVersion
-//                description CommonLibDESCRIPTION
-//            }
-//        }
-//    }
-//}
