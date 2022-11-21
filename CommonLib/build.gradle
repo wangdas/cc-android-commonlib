@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 //apply plugin: 'maven'
-apply plugin: 'com.github.dcendents.android-maven'  //添加这两行
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.wangdas'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -37,26 +38,26 @@ android {
         abortOnError false
     }
 
-    afterEvaluate {
-        publishing {
-            publications {
-                release(MavenPublication) {
-                    from components.release
-
-                    groupId = 'com.bokecc'
-                    artifactId = 'commonLib'
-                    version = '1.0.0'
-                }
-                debug(MavenPublication) {
-                    from components.debug
-
-                    groupId = 'com.bokecc'
-                    artifactId = 'commonLib'
-                    version = '1.0.0'
-                }
-            }
-        }
-    }
+//    afterEvaluate {
+//        publishing {
+//            publications {
+//                release(MavenPublication) {
+//                    from components.release
+//
+//                    groupId = 'com.bokecc'
+//                    artifactId = 'commonLib'
+//                    version = '1.0.0'
+//                }
+//                debug(MavenPublication) {
+//                    from components.debug
+//
+//                    groupId = 'com.bokecc'
+//                    artifactId = 'commonLib'
+//                    version = '1.0.0'
+//                }
+//            }
+//        }
+//    }
 
 }
 
