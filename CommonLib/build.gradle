@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
+//apply plugin: 'maven'
+apply plugin: 'com.github.dcendents.android-maven'  //添加这两行
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -35,6 +36,28 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    afterEvaluate {
+        publishing {
+            publications {
+                release(MavenPublication) {
+                    from components.release
+
+                    groupId = 'com.bokecc'
+                    artifactId = 'commonLib'
+                    version = '1.0.0'
+                }
+                debug(MavenPublication) {
+                    from components.debug
+
+                    groupId = 'com.bokecc'
+                    artifactId = 'commonLib'
+                    version = '1.0.0'
+                }
+            }
+        }
+    }
+
 }
 
 dependencies {
@@ -57,20 +80,20 @@ def getProperty(String filename, String propName) {
     }
 }
 // 配置上传指令
-    uploadArchives {
-        configuration = configurations.archives
-        repositories {
-            mavenDeployer {
-                repository(url: MAVEN_URL) {
-                    authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
-                }
-                pom.project {
-                    artifactId 'commonLib'
-                    groupId 'com.bokecc'
-                    packaging 'aar'
-                    version CommonLibVersion
-                    description CommonLibDESCRIPTION
-                }
-            }
-        }
-}
+//uploadArchives {
+//    configuration = configurations.archives
+//    repositories {
+//        mavenDeployer {
+//            repository(url: MAVEN_URL) {
+//                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+//            }
+//            pom.project {
+//                artifactId 'commonLib'
+//                groupId 'com.bokecc'
+//                packaging 'aar'
+//                version CommonLibVersion
+//                description CommonLibDESCRIPTION
+//            }
+//        }
+//    }
+//}

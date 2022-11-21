@@ -1,1 +1,3 @@
-include ':app', ':CommonLib',':CCGlide'
+if (!System.env.JITPACK) include ':app'
+include ':CommonLib'
+if (!System.env.JITPACK) include ':CCGlide'
