@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bokecc.common" >
+
+    <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取移动网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取wifi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 内存卡写入权限，注意：需要动态申请 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 内存卡读取权限，注意：需要动态申请，当声明了WRITE_EXTERNAL_STORAGE权限后，READ_EXTERNAL_STORAGE权限会自动添加 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+</manifest>

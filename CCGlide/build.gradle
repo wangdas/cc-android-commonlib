@@ -1,0 +1,88 @@
+import org.gradle.internal.jvm.Jvm
+
+plugins {
+    id 'com.android.library'
+}
+
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    lintOptions {
+        abortOnError false
+    }
+
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compileOnly files('libs/tools.jar')
+    compileOnly files('libs/rt.jar')
+//    provided files('C:/work/open/jdk-8u291-windows-i586/jre/lib/rt.jar')
+//    provided files('C:/work/open/jdk-8u291-windows-i586/lib/tools.jar')
+    compileOnly "com.squareup:javapoet:1.9.0"
+//    api "com.google.auto.service:auto-service:1.0-rc3"
+//    compileOnly "com.google.code.findbugs:jsr305:${JSR_305_VERSION}"
+//    compile project(':annotation')
+    // This is to support com.sun.tools.javac.util.List, currently used in RootModuleGenerator.
+    compile files("" + Jvm.current().getToolsJar())
+    implementation "com.google.code.findbugs:jsr305:3.0.2"
+//    api "com.android.support:support-fragment:${ANDROID_SUPPORT_VERSION}"
+//    api "com.android.support:animated-vector-drawable:${ANDROID_SUPPORT_VERSION}"
+//    compileOnly "com.android.support:appcompat-v7:${ANDROID_SUPPORT_VERSION}"
+
+    if (project.plugins.hasPlugin('net.ltgt.errorprone')) {
+        errorprone "com.google.errorprone:error_prone_core:${ERROR_PRONE_VERSION}"
+    }
+    implementation "com.android.support:appcompat-v7:28.0.0"
+    api "com.android.support:support-fragment:28.0.0"
+    api "com.android.support:animated-vector-drawable:28.0.0"
+
+    implementation 'com.google.guava:guava:19.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+
+// 配置上传指令
+uploadArchives {
+    configuration = configurations.archives
+    repositories {
+        mavenDeployer {
+            repository(url: "http://nexus-app.bokecc.com/repository/sdk-snapshot/") {
+                authentication(userName: "upload_bokecc", password: "bokecc")
+            }
+            pom.project {
+                artifactId 'CCGlide'
+                groupId 'com.bokecc'
+                packaging 'aar'
+                version '4.9.0-SNAPSHOT'
+                description "Glide"
+            }
+        }
+    }
+}
