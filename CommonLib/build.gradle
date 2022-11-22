@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.wangdas'
+apply plugin: 'com.kezong.fat-aar'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -35,25 +36,21 @@ android {
     lintOptions {
         abortOnError false
     }
-
-    repositories  {
-        flatDir {
-            dirs 'libs'
-        }
-    }
 }
 
-repositories  {
+repositories {
     flatDir {
         dirs 'libs'
     }
 }
 
 dependencies {
-    api(fileTree("libs"));
-
-    //无极 sdk
-    api files('libs/zxing-3.3.3.jar')
+//    api(fileTree("libs"));
+//    flavor1Embed project(path: ':commonLib-1.1.10', configuration: 'default')
+//    debugEmbed(name: 'commonLib-1.1.10', ext: 'aar')
+    embed(name: 'commonLib-1.1.10', ext: 'aar')
+//    embed files('libs/commonLib-1.1.10.aar')
+//    api(name:'commonLib-1.1.10',ext:'aar')
 }
 
 
