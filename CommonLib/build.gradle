@@ -36,10 +36,24 @@ android {
         abortOnError false
     }
 
+    repositories  {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+repositories  {
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
     api(fileTree("libs"));
+
+    //无极 sdk
+    api files('libs/zxing-3.3.3.jar')
 }
 
 

@@ -18,9 +18,6 @@ import com.bokecc.common.utils.Tools;
 import java.util.HashMap;
 import java.util.List;
 
-import com.bokecc.Test1;
-
-
 /**
  * 闪屏界面
  *
@@ -72,7 +69,6 @@ public class SplashActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.arrayIndexOutOfBounds:
                 Tools.loge("test","null");
-                Test1.test();
                 break;
             default:
                 break;
