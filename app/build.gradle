@@ -43,7 +43,9 @@ android {
 }
 
 dependencies {
-    api project(':CommonLib')
-//    api project(':CCGlide')
     implementation 'com.android.support:support-compat:28.0.0'
+
+    api project(':CommonLib')
+//    api 'com.github.wangdas:cc-android-commonlib:1.1.14'
+
 }
